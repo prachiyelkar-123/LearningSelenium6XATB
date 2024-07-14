@@ -6,10 +6,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Lab004 {
-import org.openqa.selenium.edge.EdgeDriver;
-
-import java.net.MalformedURLException;
-import java.net.URL;
 
     public static void main(String[] args) throws MalformedURLException {
         EdgeDriver driver = new EdgeDriver();
@@ -22,6 +18,7 @@ import java.net.URL;
         driver.navigate().back();
         driver.navigate().forward();
         driver.navigate().refresh();
+        driver.quit();
 
 
     }
