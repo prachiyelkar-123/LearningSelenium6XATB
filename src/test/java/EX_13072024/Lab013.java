@@ -12,23 +12,23 @@ import java.util.List;
 
 public class Lab013 {
 @Test
-public void testvwo() throws InterruptedException {
-
+public void testVerifyFREETrial() {
     EdgeOptions edgeOptions = new EdgeOptions();
     edgeOptions.addArguments("--guest");
+    //edgeOptions.setPageLoadStrategy(PageLoadStrategy.NONE);
 
     WebDriver driver = new EdgeDriver(edgeOptions);
-    driver.get("http://app.vwo.com");
+
+    driver.navigate().to("https://app.vwo.com");
     System.out.println(driver.getTitle());
-    Assert.assertEquals(driver.getTitle(),"login - VWO");
-    Assert.assertEquals(driver.getCurrentUrl(),"https://app.vwo.com/#/login");
+    Assert.assertEquals(driver.getTitle(), "Login - VWO");
+    Assert.assertEquals(driver.getCurrentUrl(), "https://app.vwo.com/#/login");
+    WebElement freeTrialLink = driver.findElement(By.partialLinkText("Start a free"));
+    freeTrialLink.click();
 
-    WebElement freeTriallink = driver.findElement(By.linkText("Start a free trial"));
-    freeTriallink.click();
 
-
-    WebElement enteremail = driver.findElement(By.id("page-v1-step1-email"));
-    enteremail.sendKeys("admin@admin.com");
+    WebElement enterEmail = driver.findElement(By.id("page-v1-step1-email"));
+    enterEmail.sendKeys("admin@admin.com");
 
     WebElement gdprConsentCheckbox = driver.findElement(By.name("gdpr_consent_checkbox"));
     gdprConsentCheckbox.click();
@@ -36,12 +36,25 @@ public void testvwo() throws InterruptedException {
     List<WebElement> buttonList = driver.findElements(By.tagName("button"));
     buttonList.get(0).click();
 
+    try {
+        Thread.sleep(3000);
+    } catch (InterruptedException e) {
+        throw new RuntimeException(e);
+    }
 
-    Thread.sleep(5000);
+    WebElement error_msg_email_exist = driver.findElement(By.className("invalid-reason"));
+    System.out.println(error_msg_email_exist.getText());
+
+
+
+
+    try {
+        Thread.sleep(5000);
+    } catch (InterruptedException e) {
+        throw new RuntimeException(e);
+    }
     driver.quit();
 
-}
-
 
 }
-
+}

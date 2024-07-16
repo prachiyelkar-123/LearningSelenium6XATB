@@ -16,7 +16,7 @@ public class Lab012 {
         edgeOptions.addArguments("--guest");
 
         WebDriver driver = new EdgeDriver(edgeOptions);
-        driver.get("http://app.vwo.com");
+        driver.navigate().to("https://app.vwo.com");
         System.out.println(driver.getTitle());
         Assert.assertEquals(driver.getTitle(),"login - VWO");
         Assert.assertEquals(driver.getCurrentUrl(),"https://app.vwo.com/#/login");
