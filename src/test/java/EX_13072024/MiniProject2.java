@@ -18,6 +18,7 @@ public class MiniProject2 {
         driver.get("https://katalon-demo-cura.herokuapp.com/");
 
         driver.manage().window().maximize();
+        //anchore tag
 
         WebElement appointmentBtn = driver.findElement(By.xpath("//a[text()='Make Appointment']"));
         System.out.println("Appointment button text is: "+appointmentBtn.getText());
